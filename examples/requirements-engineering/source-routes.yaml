@@ -1,0 +1,68 @@
+fixture_version: 0
+synthetic: true
+
+sources:
+  - id: REQ-L01
+    kind: lecture
+    title: Synthetic Structured Statements
+  - id: REQ-L02
+    kind: lecture
+    title: Synthetic Ambiguity Categories
+  - id: REQ-L03
+    kind: lecture
+    title: Synthetic Evaluation Criteria
+  - id: REQ-L04
+    kind: lecture
+    title: Synthetic Goal Models and Conflicts
+  - id: REQ-T01
+    kind: tutorial
+    title: Synthetic Statement-Rewrite Practice
+  - id: REQ-T02
+    kind: tutorial
+    title: Synthetic Classification Practice
+  - id: REQ-T03
+    kind: tutorial
+    title: Synthetic Diagram Practice
+  - id: REQ-F01
+    kind: format_reference
+    title: Synthetic Structured Assessment Format
+
+routes:
+  route-statement-rewrite:
+    primary: [REQ-L01]
+    supporting: [REQ-T01]
+    format_reference: [REQ-F01]
+  route-ambiguity:
+    primary: [REQ-L02]
+    supporting: [REQ-T02]
+    format_reference: [REQ-F01]
+  route-criteria:
+    primary: [REQ-L03]
+    supporting: [REQ-T01]
+    format_reference: [REQ-F01]
+  route-goal-modeling:
+    primary: [REQ-L04]
+    supporting: [REQ-T03]
+    format_reference: [REQ-F01]
+  route-conflict:
+    primary: [REQ-L04]
+    supporting: [REQ-T02]
+    format_reference: [REQ-F01]
+  route-recall:
+    primary: [REQ-L01, REQ-L02, REQ-L03, REQ-L04]
+    supporting: []
+    format_reference: []
+
+retrieval_policy:
+  default_top_k: 5
+  filter_to_route_sources: true
+  primary_source_weight: 1.0
+  supporting_source_weight: 0.8
+  format_reference_is_factual_source: false
+  require_visual_confirmation_for_diagrams: true
+  return_fields:
+    - source_id
+    - location
+    - excerpt
+    - score
+  stable_citation_format: "[<source_id>:<location>]"

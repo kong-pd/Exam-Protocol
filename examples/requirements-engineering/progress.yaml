@@ -1,0 +1,51 @@
+state_version: 0
+fixture_id: terminology-archetype-case
+synthetic: true
+
+session:
+  completed: []
+  current: statement_patterns
+  next: statement_patterns
+  last_updated: null
+
+units:
+  structured_statement_rewrite:
+    status: not_started
+    clean_standard_drills: 0
+    clean_advanced_drills: 0
+    exit_criteria_met: []
+  ambiguity_analysis:
+    status: not_started
+    clean_standard_drills: 0
+    clean_advanced_drills: 0
+    exit_criteria_met: []
+  criteria_evaluation:
+    status: not_started
+    clean_standard_drills: 0
+    clean_advanced_drills: 0
+    exit_criteria_met: []
+  goal_modeling:
+    status: not_started
+    clean_standard_drills: 0
+    clean_advanced_drills: 0
+    exit_criteria_met: []
+  conflict_classification:
+    status: not_started
+    clean_standard_drills: 0
+    clean_advanced_drills: 0
+    exit_criteria_met: []
+  recall_bank:
+    status: not_started
+    recall_accuracy: null
+    exit_criteria_met: []
+
+error_log: []
+
+handover:
+  achieved: []
+  recurring_errors: []
+  unfinished: []
+  next_action: Start statement-pattern orientation and verify the synthetic exam contract.
+  reminders:
+    - Verify factual terminology against the configured source route.
+    - Do not promote inferred priorities to confirmed exam facts.

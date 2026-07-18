@@ -1,0 +1,45 @@
+state_version: 0
+fixture_id: systems-calculation-case
+synthetic: true
+
+session:
+  completed: []
+  current: orientation
+  next: orientation
+  last_updated: null
+
+units:
+  paging_translation:
+    status: not_started
+    clean_attempts: 0
+    exit_criteria_met: []
+  replacement_fault_counting:
+    status: not_started
+    clean_attempts: 0
+    exit_criteria_met: []
+  file_permissions:
+    status: not_started
+    clean_attempts: 0
+    exit_criteria_met: []
+  storage_latency:
+    status: not_started
+    clean_attempts: 0
+    exit_criteria_met: []
+  parallel_speedup:
+    status: not_started
+    clean_attempts: 0
+    exit_criteria_met: []
+
+error_logs:
+  calculation: []
+  terminology: []
+  answer_structure: []
+
+handover:
+  achieved: []
+  weak_points: []
+  unfinished: []
+  next_action: Start orientation and verify the synthetic exam contract.
+  reminders:
+    - Do not study the confirmed excluded unit unless scope is explicitly changed.
+    - Search the configured source route before teaching factual content.

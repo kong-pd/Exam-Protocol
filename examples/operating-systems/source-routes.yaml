@@ -1,0 +1,63 @@
+fixture_version: 0
+synthetic: true
+
+sources:
+  - id: SYS-L01
+    kind: lecture
+    title: Synthetic Memory Mechanisms
+  - id: SYS-L02
+    kind: lecture
+    title: Synthetic Virtual Memory Procedures
+  - id: SYS-L03
+    kind: lecture
+    title: Synthetic Files and Storage
+  - id: SYS-L04
+    kind: lecture
+    title: Synthetic Parallel Systems
+  - id: SYS-T01
+    kind: tutorial
+    title: Synthetic Address and Replacement Practice
+  - id: SYS-T02
+    kind: tutorial
+    title: Synthetic Storage Timing Practice
+  - id: SYS-T03
+    kind: tutorial
+    title: Synthetic File Operations Practice
+  - id: SYS-F01
+    kind: format_reference
+    title: Synthetic Structured Assessment Format
+
+routes:
+  route-paging-translation:
+    primary: [SYS-L01]
+    supporting: [SYS-T01]
+    format_reference: [SYS-F01]
+  route-replacement:
+    primary: [SYS-L02]
+    supporting: [SYS-T01]
+    format_reference: [SYS-F01]
+  route-file-operations:
+    primary: [SYS-L03]
+    supporting: [SYS-T03]
+    format_reference: [SYS-F01]
+  route-storage-timing:
+    primary: [SYS-L03]
+    supporting: [SYS-T02]
+    format_reference: [SYS-F01]
+  route-parallel-speedup:
+    primary: [SYS-L04]
+    supporting: []
+    format_reference: [SYS-F01]
+
+retrieval_policy:
+  default_top_k: 5
+  filter_to_route_sources: true
+  primary_source_weight: 1.0
+  supporting_source_weight: 0.8
+  format_reference_is_factual_source: false
+  return_fields:
+    - source_id
+    - location
+    - excerpt
+    - score
+  stable_citation_format: "[<source_id>:<location>]"

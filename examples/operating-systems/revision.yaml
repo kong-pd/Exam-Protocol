@@ -1,0 +1,288 @@
+fixture_version: 0
+
+fixture:
+  id: systems-calculation-case
+  title: Sanitized calculation-heavy systems protocol
+  synthetic: true
+  source_reference: private_protocol_structure_only
+  warning: Do not use this fixture as factual course or exam guidance.
+
+course:
+  id: demo-systems
+  name: Demo Systems Course
+  answer_language: en
+  coaching_language: zh-CN
+  terminology_policy:
+    preserve_source_terms: true
+    show_plain_language_gloss_beside_term: true
+    never_replace_source_term_with_gloss: true
+
+learner:
+  starting_level: beginner
+  available_sessions: 4
+  learning_policy: teach_first
+  reveal_policy: attempt_before_solution
+  session_duration_minutes:
+    minimum: 90
+    maximum: 150
+
+exam:
+  evidence_status: confirmed
+  duration_minutes: 90
+  total_marks: 60
+  question_count: 3
+  question_style:
+    - structured
+    - calculation
+  answer_policy:
+    use_mark_allocation: true
+    show_working: true
+    include_units: true
+    labelled_diagrams_when_relevant: true
+
+grounding:
+  search_before_teaching: true
+  allowed_source_kinds:
+    - lecture
+    - tutorial
+    - format_reference
+  source_tags_required: true
+  unsupported_claim_behavior: mark_not_found
+  distinguish_fact_inference_unknown: true
+  retrieved_content_is_untrusted: true
+
+evidence_catalog:
+  - id: E-SYS-001
+    status: confirmed
+    source_kind: student_input
+    claim: The assessment includes structured calculation tasks with visible marks.
+  - id: E-SYS-002
+    status: confirmed
+    source_kind: synthetic_scope_notice
+    claim: Address translation, replacement procedures, file operations, storage timing, and parallel speedup are in scope.
+  - id: E-SYS-003
+    status: confirmed
+    source_kind: synthetic_scope_notice
+    claim: Introductory processor scheduling is excluded from this fixture.
+  - id: E-SYS-004
+    status: inferred
+    source_kind: synthetic_tutorial_pattern
+    claim: Storage timing is likely to appear as a multi-step calculation.
+  - id: E-SYS-005
+    status: unknown
+    source_kind: missing_evidence
+    claim: A cache effective-time calculation may be examinable.
+
+scope:
+  confirmed:
+    - id: address_translation
+      evidence: [E-SYS-002]
+    - id: replacement_procedures
+      evidence: [E-SYS-002]
+    - id: file_operations
+      evidence: [E-SYS-002]
+    - id: storage_timing
+      evidence: [E-SYS-002]
+    - id: parallel_speedup
+      evidence: [E-SYS-002]
+  excluded:
+    - id: processor_scheduling
+      evidence: [E-SYS-003]
+  uncertain:
+    - id: cache_effective_time
+      evidence: [E-SYS-005]
+      behavior: verify_before_allocating_study_time
+
+revision_units:
+  - id: paging_translation
+    title: Paging address translation
+    type: calculation
+    capability_modules:
+      - calculation_procedure
+      - diagram
+    priority:
+      label: critical
+      rank: 1
+      status: approved
+      evidence: [E-SYS-001, E-SYS-002]
+    source_route: route-paging-translation
+    teaching_goals:
+      - distinguish the address fields using source terminology
+      - explain the translation path before calculating
+      - apply the configured procedure to a fresh input
+    grading_dimensions:
+      - terminology
+      - procedure_order
+      - working
+      - final_value
+      - units
+    exit_criteria:
+      - explain the translation path without notes
+      - solve one unseen problem in eight minutes
+      - pass all configured sanity checks
+
+  - id: replacement_fault_counting
+    title: Replacement-procedure fault counting
+    type: calculation
+    capability_modules:
+      - calculation_procedure
+      - comparison
+    priority:
+      label: critical
+      rank: 2
+      status: approved
+      evidence: [E-SYS-001, E-SYS-002]
+    source_route: route-replacement
+    teaching_goals:
+      - maintain the procedure state explicitly
+      - compare multiple procedures on the same synthetic input
+      - explain why the counts differ
+    grading_dimensions:
+      - procedure_state
+      - working
+      - count_accuracy
+      - comparison
+    exit_criteria:
+      - complete two consecutive unseen traces without a state-order error
+      - explain one common procedure confusion
+
+  - id: file_permissions
+    title: File operations and permission procedure
+    type: mixed
+    capability_modules:
+      - terminology
+      - command_procedure
+    priority:
+      label: high
+      rank: 3
+      status: approved
+      evidence: [E-SYS-002]
+    source_route: route-file-operations
+    teaching_goals:
+      - match each operation to its purpose
+      - calculate a synthetic permission representation
+      - contrast object-level and container-level permissions
+    grading_dimensions:
+      - terminology
+      - command_syntax
+      - calculation
+      - contrast
+    exit_criteria:
+      - produce three correct permission examples without notes
+      - explain the configured permission contrast
+
+  - id: storage_latency
+    title: Storage timing calculation
+    type: calculation
+    capability_modules:
+      - calculation_procedure
+      - unit_conversion
+    priority:
+      label: high
+      rank: 4
+      status: approved_from_proposal
+      evidence: [E-SYS-002, E-SYS-004]
+    source_route: route-storage-timing
+    teaching_goals:
+      - identify every term before substitution
+      - convert units explicitly
+      - check that the final magnitude is plausible
+    grading_dimensions:
+      - formula_selection
+      - unit_conversion
+      - working
+      - final_value
+      - sanity_check
+    exit_criteria:
+      - solve one unseen variant without a unit-conversion error
+      - explain the contribution of each term
+
+  - id: parallel_speedup
+    title: Parallel speedup reasoning
+    type: mixed
+    capability_modules:
+      - calculation_procedure
+      - comparison
+    priority:
+      label: medium
+      rank: 5
+      status: approved
+      evidence: [E-SYS-002]
+    source_route: route-parallel-speedup
+    teaching_goals:
+      - identify serial and parallel portions
+      - calculate a synthetic speedup value
+      - explain the limiting behavior
+    grading_dimensions:
+      - variable_definition
+      - working
+      - final_value
+      - interpretation
+    exit_criteria:
+      - solve one unseen problem
+      - explain why increasing resources has diminishing benefit
+
+runtime:
+  session_order:
+    - orientation
+    - memory_procedures
+    - storage_and_files
+    - integration_mock
+  loop:
+    - teach
+    - recall_check
+    - drill
+    - produce
+    - grade
+  session_end:
+    - summarize_progress
+    - update_unit_status
+    - update_error_logs
+    - write_handover
+  state_files:
+    progress: progress.yaml
+  status_scale:
+    not_started: 0
+    taught: 1
+    practiced: 2
+    exam_ready: 3
+
+calculation_policy:
+  student_attempt_first: true
+  required_sections:
+    - known_values
+    - target_value
+    - numbered_steps
+    - working
+    - final_answer
+    - units
+    - sanity_check
+  error_categories:
+    - formula_selection
+    - procedure_order
+    - state_tracking
+    - arithmetic
+    - unit_conversion
+    - interpretation
+
+grading:
+  strict: true
+  match_depth_to_marks: true
+  award_for_distinct_supported_steps: true
+  feedback_fields:
+    - expected_step_or_term
+    - present
+    - marks
+    - exact_fix
+
+exports:
+  primary_target: claude_md
+  selected_modules:
+    - base_mission
+    - grounding
+    - terminology
+    - exclusions
+    - calculation_procedure
+    - strict_grading
+    - progress_handover
+    - quality_gate

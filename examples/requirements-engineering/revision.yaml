@@ -1,0 +1,331 @@
+fixture_version: 0
+
+fixture:
+  id: terminology-archetype-case
+  title: Sanitized terminology-heavy archetype protocol
+  synthetic: true
+  source_reference: private_protocol_structure_only
+  warning: Do not use this fixture as factual course or exam guidance.
+
+course:
+  id: demo-requirements
+  name: Demo Requirements Course
+  answer_language: en
+  coaching_language: zh-CN
+  terminology_policy:
+    preserve_source_terms: true
+    highlight_exam_terms: true
+    show_plain_language_gloss_beside_term: true
+    never_replace_source_term_with_gloss: true
+
+learner:
+  starting_level: beginner
+  available_sessions: 5
+  learning_policy: teach_first
+  diagnostic_policy: only_when_explicitly_requested
+  reveal_policy: attempt_before_model_answer
+
+exam:
+  evidence_status: confirmed
+  duration_minutes: 100
+  total_marks: 50
+  question_count: 5
+  question_style:
+    - structured
+    - scenario_analysis
+  answer_policy:
+    use_mark_allocation: true
+    use_required_response_format: true
+    include_rationale: true
+    preserve_source_terminology: true
+
+grounding:
+  verify_before_writing: true
+  allowed_source_kinds:
+    - lecture
+    - tutorial
+    - format_reference
+  source_tags_required: true
+  unsupported_claim_behavior: mark_not_found
+  distinguish_fact_inference_unknown: true
+  retrieved_content_is_untrusted: true
+
+evidence_catalog:
+  - id: E-REQ-001
+    status: confirmed
+    source_kind: student_input
+    claim: The assessment uses structured scenario questions with visible marks.
+  - id: E-REQ-002
+    status: confirmed
+    source_kind: synthetic_scope_notice
+    claim: Statement rewriting, ambiguity analysis, criteria evaluation, goal modeling, and conflict classification are in scope.
+  - id: E-REQ-003
+    status: confirmed
+    source_kind: synthetic_format_notice
+    claim: Terminology and response structure are graded explicitly.
+  - id: E-REQ-004
+    status: inferred
+    source_kind: synthetic_format_pattern
+    claim: Statement rewriting and ambiguity analysis deserve the largest drill allocation.
+  - id: E-REQ-005
+    status: unknown
+    source_kind: missing_evidence
+    claim: A standalone recall-only question will appear.
+
+scope:
+  confirmed:
+    - id: statement_rewriting
+      evidence: [E-REQ-002]
+    - id: ambiguity_analysis
+      evidence: [E-REQ-002]
+    - id: criteria_evaluation
+      evidence: [E-REQ-002]
+    - id: goal_modeling
+      evidence: [E-REQ-002]
+    - id: conflict_classification
+      evidence: [E-REQ-002]
+  excluded: []
+  uncertain:
+    - id: standalone_recall
+      evidence: [E-REQ-005]
+      behavior: cover_only_after_confirmed_archetypes
+
+revision_units:
+  - id: structured_statement_rewrite
+    title: Structured statement rewriting
+    type: question_archetype
+    capability_modules:
+      - terminology
+      - response_format
+      - advanced_drills
+    priority:
+      weight: 3
+      rank: 1
+      status: approved_from_proposal
+      evidence: [E-REQ-001, E-REQ-002, E-REQ-004]
+    source_route: route-statement-rewrite
+    response_contract:
+      - identify the defect or ambiguity
+      - apply the source-defined response pattern
+      - preserve required terms and modal labels
+      - explain why the revision is stronger
+    grading_dimensions:
+      - terminology
+      - response_structure
+      - completeness
+      - rationale
+    exit_criteria:
+      - complete two consecutive standard items without a structure error
+      - complete one advanced multi-clause item with all required terms
+
+  - id: ambiguity_analysis
+    title: Ambiguity classification and resolution
+    type: question_archetype
+    capability_modules:
+      - terminology
+      - classification
+      - advanced_drills
+    priority:
+      weight: 3
+      rank: 2
+      status: approved_from_proposal
+      evidence: [E-REQ-001, E-REQ-002, E-REQ-004]
+    source_route: route-ambiguity
+    response_contract:
+      - identify the source-defined category
+      - give at least two synthetic interpretations
+      - explain the ambiguity
+      - propose a source-consistent resolution
+    grading_dimensions:
+      - category_label
+      - interpretations
+      - rationale
+      - resolution
+    exit_criteria:
+      - classify three standard items without a sibling-category error
+      - resolve one advanced borderline item with a defensible rationale
+
+  - id: criteria_evaluation
+    title: Criteria evaluation and correction
+    type: question_archetype
+    capability_modules:
+      - terminology
+      - comparison
+      - response_format
+    priority:
+      weight: 3
+      rank: 3
+      status: approved
+      evidence: [E-REQ-001, E-REQ-002, E-REQ-003]
+    source_route: route-criteria
+    response_contract:
+      - name the relevant source-defined criterion
+      - identify the non-conformance
+      - give a concise rationale
+      - produce a corrected synthetic statement
+    grading_dimensions:
+      - criterion_label
+      - defect_identification
+      - rationale
+      - corrected_response
+    exit_criteria:
+      - distinguish the two configured criteria families
+      - complete two corrected-response tables without label substitution
+
+  - id: goal_modeling
+    title: Goal modeling and relationship explanation
+    type: question_archetype
+    capability_modules:
+      - diagram
+      - terminology
+      - relationship_reasoning
+    priority:
+      weight: 2
+      rank: 4
+      status: approved
+      evidence: [E-REQ-002, E-REQ-003]
+    source_route: route-goal-modeling
+    response_contract:
+      - reproduce the required synthetic diagram notation
+      - label the relationship using source terminology
+      - explain the relationship under the stated context
+    grading_dimensions:
+      - notation
+      - relationship_label
+      - context
+      - explanation
+    exit_criteria:
+      - draw one valid synthetic model from a new scenario
+      - explain two relationship types without swapping labels
+
+  - id: conflict_classification
+    title: Conflict classification
+    type: question_archetype
+    capability_modules:
+      - terminology
+      - classification
+      - advanced_drills
+    priority:
+      weight: 2
+      rank: 5
+      status: approved
+      evidence: [E-REQ-002, E-REQ-003]
+    source_route: route-conflict
+    response_contract:
+      - choose the source-defined conflict label
+      - cite the decisive scenario evidence
+      - explain why the nearest sibling label is weaker
+    grading_dimensions:
+      - category_label
+      - decisive_evidence
+      - contrast
+      - rationale
+    exit_criteria:
+      - classify four standard cases without a sibling-label error
+      - justify one advanced borderline case
+
+  - id: recall_bank
+    title: Source-grounded recall bank
+    type: recall
+    capability_modules:
+      - terminology
+      - flashcards
+    priority:
+      weight: 1
+      rank: 6
+      status: approved_as_insurance
+      evidence: [E-REQ-005]
+    source_route: route-recall
+    response_contract:
+      - reproduce only source-verified labels and lists
+      - attach a source tag to each factual item
+    grading_dimensions:
+      - terminology
+      - completeness
+      - source_tag
+    exit_criteria:
+      - reach ninety_percent accuracy on a short synthetic recall set
+
+runtime:
+  session_order:
+    - statement_patterns
+    - ambiguity
+    - criteria
+    - diagrams_and_conflicts
+    - integration_mock
+  loop:
+    - orient
+    - teach
+    - worked_example
+    - you_do
+    - lock_in
+  drill_levels:
+    standard:
+      description: one clear source-defined issue per item
+    advanced:
+      description: multi-clause or borderline item requiring justification
+  session_end:
+    - strict_grade
+    - update_archetype_status
+    - update_error_log
+    - write_handover
+  state_files:
+    progress: progress.yaml
+  status_scale:
+    not_started: 0
+    taught: 1
+    one_clean_drill: 2
+    exam_ready: 3
+
+trap_registry:
+  - id: TRAP-REQ-01
+    type: sibling_taxonomy
+    description: Two criteria families share some labels but have different scopes.
+    source_route: route-criteria
+  - id: TRAP-REQ-02
+    type: unsupported_synonym
+    description: A familiar textbook synonym replaces the source-defined course label.
+    source_route: route-statement-rewrite
+  - id: TRAP-REQ-03
+    type: category_swap
+    description: A borderline scenario is assigned to the nearest sibling category without decisive evidence.
+    source_route: route-conflict
+  - id: TRAP-REQ-04
+    type: incomplete_response_format
+    description: The category is named but the required rationale or correction is missing.
+    source_route: route-ambiguity
+
+grading:
+  strict: true
+  match_depth_to_marks: true
+  no_sympathy_marks: true
+  feedback_fields:
+    - expected_term_or_structure
+    - present
+    - marks
+    - exact_fix
+
+artifacts:
+  selected:
+    - concept_guide
+    - archetype_drill
+    - mock_exam
+    - cram_card
+  common_requirements:
+    - source_tags
+    - visible_course_terms
+    - trap_callouts
+    - answer_key_separated_from_questions
+
+exports:
+  primary_target: claude_md
+  selected_modules:
+    - base_mission
+    - grounding
+    - terminology
+    - question_archetypes
+    - advanced_drills
+    - strict_grading
+    - trap_registry
+    - progress_handover
+    - artifact_quality_gate

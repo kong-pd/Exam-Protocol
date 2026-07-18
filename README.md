@@ -113,6 +113,13 @@ The idea grew from two detailed revision protocols that were effective in real s
 - an **Operating Systems** protocol focused on calculations, reusable procedures, session exit criteria, source routing, and cross-chat handover;
 - a **Requirements Engineering** protocol organized around question archetypes, source tags, terminology fidelity, a trap registry, strict grading, and artifact quality gates.
 
+Sanitized structural fixtures are now available:
+
+- [`examples/operating-systems`](./examples/operating-systems/) — calculation-heavy case;
+- [`examples/requirements-engineering`](./examples/requirements-engineering/) — terminology- and archetype-heavy case.
+
+The cross-case extraction and sanitization decisions are documented in [`docs/reference-analysis.md`](./docs/reference-analysis.md).
+
 Although the subjects are different, they share a stable execution kernel:
 
 | Shared layer | Purpose |
@@ -128,7 +135,7 @@ Although the subjects are different, they share a stable execution kernel:
 | Persistent state | Tracks readiness, mistakes, and handover context. |
 | Quality gate | Prevents unsupported or structurally incomplete artifacts. |
 
-The original protocols are intentionally **not published verbatim**. They contain course identifiers, lecturer-specific exam intelligence, source-file details, and material-derived wording that should not become public defaults. Sanitized examples and regression fixtures are planned once the schema is defined.
+The original protocols are intentionally **not published verbatim**. They contain course identifiers, lecturer-specific exam intelligence, source-file details, and material-derived wording that should not become public defaults. The public fixtures replace those details with synthetic data while preserving the protocol mechanics needed for schema design and future regression tests.
 
 The first compiler milestone is not “generate a nice prompt.” It is:
 
@@ -435,10 +442,10 @@ Early experiments should test whether:
 
 ## Immediate next steps
 
-1. Produce sanitized structural outlines of the two reference protocols.
-2. Mark each section as stable kernel, course variable, strategy proposal, or runtime state.
-3. Draft the two schemas before choosing a language or building a UI.
-4. Create fixtures and snapshot expectations for both reference cases.
+1. Review the sanitized fixtures against the private references and record any lost structural invariant.
+2. Draft `revision.schema.json` and `proposal.schema.json` from the fixture data before choosing a language or building a UI.
+3. Convert the fixture classifications into shared template modules and capability modules.
+4. Add schema, semantic-snapshot, and privacy deny-list tests.
 5. Build the smallest compiler that emits one useful `CLAUDE.md` from a manually completed manifest.
 6. Test the copy-paste BYOM flow with real students before adding provider integrations.
 

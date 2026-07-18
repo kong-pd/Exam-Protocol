@@ -1,0 +1,25 @@
+# Secrets and provider configuration
+.env
+.env.*
+!.env.example
+
+# Private course material and original reference protocols
+materials/
+private/
+private-references/
+references-private/
+
+# Learner-specific state
+*.local.yaml
+**/progress.local.yaml
+**/error-log.local.yaml
+
+# Generated or model-transfer bundles
+analysis-bundle/
+exam-agent-package/
+
+# Common local tooling
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
